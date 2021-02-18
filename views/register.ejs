@@ -1,0 +1,31 @@
+<%- include('partials/header') %>
+
+<div id="register">
+  <div class="container">
+
+    <div id="heading">
+      <h1>LOUNGELITE</h1>
+      <p>show the world who had the worse day</p>
+    </div>
+
+    <div class="registerBox">
+      <h3 style="margin-bottom: 20px;">Create your account</h3>
+      <div class="hiddenMessage">
+        <%- include('partials/messages') %>
+      </div>
+      <form action="/register" method="post">
+        <label for="signupUsername" class="visually-hidden">Username</label>
+        <input type="text" id="signupUsername" name="username" class="form-control" placeholder="Username" required autofocus>
+        <label for="signupPassword" class="visually-hidden">Password</label>
+        <input type="password" id="signupPassword" name="password" class="form-control" placeholder="Password" required>
+        <label for="signupConfirmPassword" class="visually-hidden">Confirm Password</label>
+        <input type="password" id="signupConfirmPassword" name="confirmPassword" class="form-control" placeholder="Re-enter Password" required>
+        <button class="w-100 btn btn-lg" type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<%- include('partials/footer') %>

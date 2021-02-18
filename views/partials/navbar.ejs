@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-sm navbar-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav w-100 d-flex justify-content-between">
+        <a class="nav-link" href="/about">ABOUT</a>
+        <a class="nav-link" href="/lounge">LOUNGE</a>
+        <a class="nav-link" href="/users/<%= userProfile._id  %>">MY PAGE</a>
+        <!-- <div class="dropdown">
+          <a class="nav-link position-relative" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            NOTIFICATIONS<span class="position-absolute top-25 start-100 translate-middle badge rounded-pill bg-secondary">2</span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </div> -->
+        <a class="nav-link" href="/logout">LOGOUT</a>
+      </div>
+    </div>
+  </div>
+</nav>

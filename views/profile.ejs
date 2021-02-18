@@ -1,0 +1,83 @@
+<%- include('partials/header') %>
+
+<%- include('partials/navbar') %>
+
+<div id="profile">
+  <div class="container">
+    <div class="starter-template text-center py-5 px-3 w-100">
+      <h1><%= userProfile.username %></h1>
+    </div>
+
+    <p>
+      <a class="btn" data-bs-toggle="collapse" name="createNewPost" href="#createNewPost" role="button" aria-expanded="false" aria-controls="createNewPost">
+        Create New Post
+      </a>
+    </p>
+    <div class="collapse" id="createNewPost">
+      <form action="/lounge" method="post">
+        <div class="card">
+          <div class="card-header">
+            <input class="newPost bg-light" type="text" name="postTitle" placeholder="Enter title" required>
+          </div>
+          <div class="card-body">
+            <textarea class="newPost bg-light" rows="8" cols="80" name="postBody" placeholder="Enter post" required></textarea>
+          </div>
+          <div class="buttons">
+            <div>
+              <label for="postVisibility" class="form-label">Select post visibility: </label>
+              <select class="form-select-sm" name="postVisibility" id="postVisibility" aria-label="Default select example">
+                <option selected>Public</option>
+                <option>Private</option>
+              </select>
+            </div>
+            <button class="btn" type="submit" name="publishPost">Publish</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+
+    <% foundPosts.forEach((item,idx) => { %>
+    <div class="card">
+      <div class="card-header d-flex justify-content-between">
+        <h5><%= item.title %></h5>
+        <p><%= timeAgoArray[idx] %></p>
+      </div>
+      <div class="card-body">
+        <p><%= item.body %></p>
+      </div>
+      <div class="card-body postBox">
+        <p><%= item.status %></p>
+        <div class="social-icons d-flex justify-content-between">
+          <!-- <form action="/lounge/<%= item._id %>" method="post">
+            <p> <%= item.action.likes %> <button class="likeButton" type="submit" name="submitLike"><i class="far fa-thumbs-up"></i></button></p>
+            <p> <%= item.action.dislikes %> <button class="likeButton" type="submit" name="submitDislike"><i class="far fa-thumbs-down"></i></button></p>
+          </form> -->
+          <p> <%= item.action.comments.length %>
+            <a class="commentLink" data-bs-toggle="collapse" href="#commentBox<%= item._id %>" role="button" aria-expanded="false" aria-controls="commentBox<%= item._id %>">
+              <i class="far fa-comment"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+      <div class="collapse commentContainer" id="commentBox<%= item._id %>">
+        <% item.action.comments.forEach(com => { %>
+        <div class="card commentCard">
+          <h5><%= com.userNickName %></h5>
+          <p><%= com.comment %></p>
+        </div>
+        <% }) %>
+        <form action="/lounge/<%= item._id %>" method="post">
+          <div class="card">
+            <textarea class="newPost" name="postComment" rows="4" cols="80"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit" name="submitComment">Submit Comment</button>
+        </form>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

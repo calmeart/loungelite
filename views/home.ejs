@@ -1,0 +1,63 @@
+<%- include('partials/header') %>
+
+<div id="home">
+
+
+  <div class="container">
+
+    <div id="heading">
+      <h1>LOUNGELITE</h1>
+      <p>show the world who had the worse day</p>
+    </div>
+
+    <div class="row">
+      <h3 style="margin-bottom: 20px;">Let's get started</h3>
+      <div class="hiddenMessage">
+        <%- include('partials/messages') %>
+      </div>
+      <div class="col-sm-5">
+        <form action="/login" method="post">
+          <label for="signinUsername" class="visually-hidden">Username</label>
+          <input type="text" id="signinUsername" name="username" class="form-control" placeholder="Username" required autofocus>
+          <label for="signinPassword" class="visually-hidden">Password</label>
+          <input type="password" id="signinPassword" name="password" class="form-control" placeholder="Password" required>
+          <button class="w-100 btn btn-lg" type="submit">Login</button>
+        </form>
+      </div>
+      <div class="vl">
+
+      </div>
+      <div class="col-sm-5">
+        <div class="card social-google">
+          <div class="card-body">
+            <a class="btn btn-block" href="/auth/google" role="button">
+              <i class="fab fa-google"></i>
+              Sign Up with Google
+            </a>
+          </div>
+        </div>
+        <div class="card social-facebook">
+          <div class="card-body">
+            <a class="btn btn-block" href="/auth/facebook" role="button">
+              <i class="fab fa-facebook-f"></i>
+              Sign Up with Facebook
+            </a>
+          </div>
+        </div>
+        <div class="card social-twitter">
+          <div class="card-body">
+            <a class="btn btn-block disabled" href="/auth/twitter" role="button">
+              <i class="fab fa-twitter"></i>
+              Sign Up with Twitter
+            </a>
+          </div>
+        </div>
+      </div>
+      <h5>Don't have an account?</h5>
+      <p><a class="coloredLink" href="/register">Click here </a>to create an account</p>
+    </div>
+
+  </div>
+</div>
+
+  <%- include('partials/footer') %>
