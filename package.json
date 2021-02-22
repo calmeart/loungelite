@@ -11,6 +11,15 @@
   "engines": {
     "node": "14.15.4"
   },
+  "keywords": [
+    "social media",
+    "blog",
+    "express-session",
+    "authenticate",
+    "oauth",
+    "mongodb",
+    "ejs"
+  ],
   "dependencies": {
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
