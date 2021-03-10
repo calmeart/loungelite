@@ -1,4 +1,5 @@
 const passport = require('passport');
+const User = require('../models/user-model');
 
 module.exports = (app) => {
   app.get('/auth/facebook', passport.authenticate('facebook'));

@@ -36,30 +36,56 @@ require('./routes/auth-routes')(app);
 // PROFILE PAGE FUNCTIONS
 
 app.route("/users/:userid")
-  .get((req, res) => {
+  .get(async (req, res) => {
     if (req.user) {
-      Post.find({
-        userIdNumber: req.user._id
-      }).sort({
-        date: "desc"
-      }).exec(function(err, foundPosts) {
-        if (err) return res.send(err);
-        const timeAgoArray = [];
-        foundPosts.forEach(item => {
-          timeAgoArray.push(formatDate(item.date));
-        })
-        res.render('profile', {
-          userProfile: req.user,
-          foundPosts,
-          timeAgoArray
-        });
-      })
+      const timeAgoArray = [];
+      const foundPosts = await Post.find({userIdNumber: req.user._id}).sort({date: "desc"});
+      const foundStacks = await Stack.find({userId: req.user._id});
+      foundPosts.forEach(item => {
+        timeAgoArray.push(formatDate(item.date));
+      });
+      res.render('profile', {
+        userProfile: req.user,
+        foundPosts,
+        foundStacks,
+        timeAgoArray
+      });
     } else {
       req.flash("error", "You need to login to view this page");
       res.redirect("/");
     }
   });
 
+app.route("/users/:userid/stacks")
+  .post(async (req, res) => {
+    const tempStack = new Stack({
+      stackName: req.body.newStack,
+      userId: req.user._id
+    });
+    await tempStack.save();
+    res.redirect('/users/' + req.user._id);
+  });
+
+app.route("/users/:userid/stacks/:stackname")
+  .get(async (req, res) => {
+    if (req.user) {
+      const timeAgoArray = [];
+      const foundPosts = await Post.find({userIdNumber: req.params.userid, stack: req.params.stackname}).sort({date: "desc"});
+      const foundStacks = await Stack.find({userId: req.params.userid});
+      foundPosts.forEach(item => {
+        timeAgoArray.push(formatDate(item.date));
+      });
+      res.render('profile', {
+        userProfile: req.user,
+        foundPosts,
+        foundStacks,
+        timeAgoArray
+      });
+    } else {
+      req.flash("error", "You need to login to view this page");
+      res.redirect("/");
+    }
+  })
 
 
 // LOUNGE FUNCTIONS
@@ -96,6 +122,7 @@ app.route("/lounge")
       userIdNumber: req.user._id,
       userNickName: req.user.username,
       status: req.body.postVisibility,
+      stack: req.body.postStack,
       action: {
         likes: 0,
         dislikes: 0,

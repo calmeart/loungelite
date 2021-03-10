@@ -25,9 +25,18 @@
           <div class="buttons">
             <div>
               <label for="postVisibility" class="form-label">Select post visibility: </label>
-              <select class="form-select-sm" name="postVisibility" id="postVisibility" aria-label="Default select example">
+              <select class="form-select-sm" name="postVisibility" id="postVisibility" aria-label="Default Visibility">
                 <option selected>Public</option>
                 <option>Private</option>
+              </select>
+            </div>
+            <div>
+              <label for="postStack" class="form-label">Stack: </label>
+              <select class="form-select-sm" name="postStack" id="postStack" aria-label="Default Stack">
+                <option selected>General</option>
+                <% foundStacks.forEach(stack => { %>
+                  <option><%= stack.stackName %></option>
+                <% }) %>
               </select>
             </div>
             <button class="btn" type="submit" name="publishPost">Publish</button>
@@ -36,7 +45,23 @@
       </form>
     </div>
 
-
+    <div class="stackBox">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <a class="btn btn-secondary" href="/users/<%= userProfile._id %>">General</a>
+        <% foundStacks.forEach(stack => { %>
+        <a class="btn btn-secondary" href="/users/<%= userProfile._id %>/stacks/<%= stack.stackName %>"><%= stack.stackName %></a>
+        <% }) %>
+        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseStack" role="button" aria-expanded="false" aria-controls="collapseStack">+</a>
+        <div class="collapse" id="collapseStack">
+          <form class="stackForm" action="/users/<%= userProfile._id %>/stacks" method="post">
+            <div class="input-group">
+              <input type="text" class="form-control" name="newStack" placeholder="Enter Stack Name" aria-label="Enter Stack Name" aria-describedby="button-addon2">
+              <button class="btn btn-outline-secondary" type="submit" name="createStack" id="button-addon2">Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <% foundPosts.forEach((item,idx) => { %>
     <div class="card">

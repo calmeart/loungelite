@@ -213,6 +213,11 @@ button[name="submitComment"] {
   margin: 0 20px 20px;
 }
 
+input[name="newStack"] {
+  border-radius: 0;
+
+}
+
 /**************************NEW POST CARD********************************/
 
 .newPost {
