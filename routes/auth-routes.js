@@ -79,4 +79,16 @@ module.exports = (app) => {
       res.redirect('/');
     });
 
+  app.route("/about")
+    .get((req, res) => {
+      if (req.user) {
+        res.render('about', {
+          userProfile: req.user
+        });
+      } else {
+        req.flash("error", "You need to login to view this page");
+        res.redirect("/");
+      }
+    });
+
 };
