@@ -51,7 +51,7 @@
         <% foundStacks.forEach(stack => { %>
         <a class="btn btn-secondary" href="/users/<%= userProfile._id %>/stacks/<%= stack.stackName %>"><%= stack.stackName %></a>
         <% }) %>
-        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseStack" role="button" aria-expanded="false" aria-controls="collapseStack">+</a>
+        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseStack" role="button" aria-expanded="false" aria-controls="collapseStack"><i class="fas fa-plus"></i></a>
         <div class="collapse" id="collapseStack">
           <form class="stackForm" action="/users/<%= userProfile._id %>/stacks" method="post">
             <div class="input-group">
