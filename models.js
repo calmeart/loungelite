@@ -28,6 +28,7 @@ const postSchema = new mongoose.Schema({
   userIdNumber: String,
   userNickName: String,
   status: String,
+  stack: String,
   action: {
     likes: Number,
     dislikes: Number,
@@ -37,7 +38,15 @@ const postSchema = new mongoose.Schema({
 
 const Post = new mongoose.model('Post', postSchema);
 
+const stackSchema = new mongoose.Schema({
+  stackName: String,
+  userId: String
+});
+
+const Stack = new mongoose.model('Stack', stackSchema);
+
 module.exports = {
   User,
-  Post
+  Post,
+  Stack
 }
