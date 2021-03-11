@@ -13,7 +13,14 @@ router.route("/:userId")
     if (req.user) {
       const timeAgoArray = [];
       const foundUser = await User.findById(req.params.userId);
-      const foundPosts = await Post.find({userIdNumber: req.params.userId}).sort({date: "desc"});
+      let foundPosts;
+      if (req.user._id == req.params.userId) {
+        console.log("if equals to");
+        foundPosts = await Post.find({userIdNumber: req.params.userId}).sort({date: "desc"});
+      } else {
+        console.log("if not equal to");
+        foundPosts = await Post.find({userIdNumber: req.params.userId, status: "Public"}).sort({date: "desc"});
+      }
       const foundStacks = await Stack.find({userId: req.params.userId});
       foundPosts.forEach(item => {
         timeAgoArray.push(formatDate(item.date));

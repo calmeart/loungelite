@@ -1,0 +1,36 @@
+<p>
+  <a class="btn" data-bs-toggle="collapse" name="createNewPost" href="#createNewPost" role="button" aria-expanded="false" aria-controls="createNewPost">
+    Create New Post
+  </a>
+</p>
+<div class="collapse" id="createNewPost">
+  <form action="/lounge" method="post">
+    <div class="card">
+      <div class="card-header">
+        <input class="newPost bg-light" type="text" name="postTitle" placeholder="Enter title" required>
+      </div>
+      <div class="card-body">
+        <textarea class="newPost bg-light" rows="8" cols="80" name="postBody" placeholder="Enter post" required></textarea>
+      </div>
+      <div class="buttons">
+        <div>
+          <label for="postVisibility" class="form-label">Select post visibility: </label>
+          <select class="form-select-sm" name="postVisibility" id="postVisibility" aria-label="Default Visibility">
+            <option selected>Public</option>
+            <option>Private</option>
+          </select>
+        </div>
+        <div>
+          <label for="postStack" class="form-label">Stack: </label>
+          <select class="form-select-sm" name="postStack" id="postStack" aria-label="Default Stack">
+            <option selected>General</option>
+            <% foundStacks.forEach(stack => { %>
+              <option><%= stack.stackName %></option>
+            <% }) %>
+          </select>
+        </div>
+        <button class="btn" type="submit" name="publishPost">Publish</button>
+      </div>
+    </div>
+  </form>
+</div>

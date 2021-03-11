@@ -1,0 +1,9 @@
+<a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseStack" role="button" aria-expanded="false" aria-controls="collapseStack"><i class="fas fa-plus"></i></a>
+<div class="collapse" id="collapseStack">
+  <form class="stackForm" action="/users/<%= userProfile._id %>/stacks" method="post">
+    <div class="input-group">
+      <input type="text" class="form-control" name="newStack" placeholder="Enter Stack Name" aria-label="Enter Stack Name" aria-describedby="button-addon2">
+      <button class="btn btn-outline-secondary" type="submit" name="createStack" id="button-addon2">Create</button>
+    </div>
+  </form>
+</div>

@@ -8,42 +8,9 @@
       <h1><%= userProfile.username %></h1>
     </div>
 
-    <p>
-      <a class="btn" data-bs-toggle="collapse" name="createNewPost" href="#createNewPost" role="button" aria-expanded="false" aria-controls="createNewPost">
-        Create New Post
-      </a>
-    </p>
-    <div class="collapse" id="createNewPost">
-      <form action="/lounge" method="post">
-        <div class="card">
-          <div class="card-header">
-            <input class="newPost bg-light" type="text" name="postTitle" placeholder="Enter title" required>
-          </div>
-          <div class="card-body">
-            <textarea class="newPost bg-light" rows="8" cols="80" name="postBody" placeholder="Enter post" required></textarea>
-          </div>
-          <div class="buttons">
-            <div>
-              <label for="postVisibility" class="form-label">Select post visibility: </label>
-              <select class="form-select-sm" name="postVisibility" id="postVisibility" aria-label="Default Visibility">
-                <option selected>Public</option>
-                <option>Private</option>
-              </select>
-            </div>
-            <div>
-              <label for="postStack" class="form-label">Stack: </label>
-              <select class="form-select-sm" name="postStack" id="postStack" aria-label="Default Stack">
-                <option selected>General</option>
-                <% foundStacks.forEach(stack => { %>
-                  <option><%= stack.stackName %></option>
-                <% }) %>
-              </select>
-            </div>
-            <button class="btn" type="submit" name="publishPost">Publish</button>
-          </div>
-        </div>
-      </form>
-    </div>
+    <% if (clientData._id.toString() == userProfile._id.toString()) { %>
+      <%- include('partials/create-post') %>
+    <% } %>
 
     <div class="stackBox">
       <div class="btn-group" role="group" aria-label="Basic example">
@@ -51,15 +18,9 @@
         <% foundStacks.forEach(stack => { %>
         <a class="btn btn-secondary" href="/users/<%= userProfile._id %>/stacks/<%= stack.stackName %>"><%= stack.stackName %></a>
         <% }) %>
-        <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseStack" role="button" aria-expanded="false" aria-controls="collapseStack"><i class="fas fa-plus"></i></a>
-        <div class="collapse" id="collapseStack">
-          <form class="stackForm" action="/users/<%= userProfile._id %>/stacks" method="post">
-            <div class="input-group">
-              <input type="text" class="form-control" name="newStack" placeholder="Enter Stack Name" aria-label="Enter Stack Name" aria-describedby="button-addon2">
-              <button class="btn btn-outline-secondary" type="submit" name="createStack" id="button-addon2">Create</button>
-            </div>
-          </form>
-        </div>
+        <% if (clientData._id.toString() == userProfile._id.toString()) { %>
+          <%- include('partials/create-stack') %>
+        <% } %>
       </div>
     </div>
 
