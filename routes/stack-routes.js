@@ -18,8 +18,8 @@ router.route("/:stackname")
   .get(async (req, res) => {
     if (req.user) {
       const timeAgoArray = [];
-      const foundPosts = await Post.find({userIdNumber: req.params.userid, stack: req.params.stackname}).sort({date: "desc"});
-      const foundStacks = await Stack.find({userId: req.params.userid});
+      const foundPosts = await Post.find({userIdNumber: req.params.userId, stack: req.params.stackname}).sort({date: "desc"});
+      const foundStacks = await Stack.find({userId: req.params.userId});
       foundPosts.forEach(item => {
         timeAgoArray.push(formatDate(item.date));
       });
