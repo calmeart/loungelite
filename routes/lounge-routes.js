@@ -15,7 +15,7 @@ router.route("/")
           timeAgoArray.push(formatDate(item.date));
         })
         res.render('lounge', {
-          userProfile: req.user,
+          clientData: req.user,
           foundPosts,
           timeAgoArray
         });

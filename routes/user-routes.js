@@ -8,6 +8,16 @@ const stackRoutes = require('./stack-routes');
 
 router.use('/:userId/stacks', stackRoutes);
 
+router.route("/")
+  .get((req, res) => {
+    if (req.user) {
+      res.redirect("/users/" + req.user._id)
+    } else {
+      req.flash("error", "You need to login to view this page");
+      res.redirect("/");
+    }
+  })
+
 router.route("/:userId")
   .get(async (req, res) => {
     if (req.user) {

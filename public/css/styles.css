@@ -32,9 +32,26 @@ body {
   font-weight: bold;
 }
 
+.navLink {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+  text-decoration: none;
+  color: var(--main-color);
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: color .5s;
+}
+
+.navLink:hover {
+  color: var(--highlight-color);
+}
+
 /***********************HOME PAGE*******************************/
 
 #home, #register {
+  position: relative;
   max-width: 992px;
   margin: auto;
   text-align: center;
@@ -130,11 +147,7 @@ form .btn:hover {
   color: var(--highlight-color);
 }
 
-.aboutBox {
-  margin: 50px auto;
-  text-align: left;
-  margin-bottom: 100px;
-}
+
 
 @media (max-device-width: 568px) {
   #home {
@@ -254,6 +267,26 @@ a[name="createNewPost"] {
 a[name="createNewPost"]:hover {
   background-color: var(--highlight-color);
   color: white;
+}
+
+/***********************ABOUT PAGE**************************************/
+
+.aboutBox {
+  margin: 50px auto;
+  text-align: left;
+  margin-bottom: 100px;
+}
+
+.aboutDoc {
+  border: 5px solid var(--main-color);
+  border-radius: .5rem;
+  color: var(--main-color);
+  padding: 20px 15%;
+}
+
+.aboutImage {
+  width: 80%;
+  min-width: 300px;
 }
 
 /***********************FOOTER SECTION********************************/
