@@ -17,6 +17,19 @@ router.route("/edit")
     res.redirect('/users/' + req.user._id)
   })
 
+router.route("/update")
+  .post(async (req, res) => {
+    const temp = {
+      title: req.body.postTitle,
+      body: req.body.postBody,
+      date: new Date(),
+      status: req.body.postVisibility,
+      stack: req.body.postStack,
+    };
+    await Post.findByIdAndUpdate(req.body.postId, { $set: temp});
+    res.redirect('/users/' + req.user._id);
+  })
+
 router.route("/:postId")
   .get(async (req, res) => {
     const foundPost = await Post.findById(req.params.postId);
