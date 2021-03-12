@@ -13,6 +13,7 @@ const flash = require('connect-flash');
 
 const userRoutes = require('./routes/user-routes');
 const loungeRoutes = require('./routes/lounge-routes');
+const postRoutes = require('./routes/posts-routes');
 
 const User = require('./models/user-model');
 const Post = require('./models/post-model');
@@ -38,6 +39,7 @@ require('./routes/auth-routes')(app);
 
 app.use('/users', userRoutes);
 app.use('/lounge', loungeRoutes);
+app.use('/posts', postRoutes);
 
 app.listen(process.env.PORT, function() {
   console.log("Server is running on port: " + process.env.PORT);

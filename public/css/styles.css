@@ -224,7 +224,10 @@ button[name="submitComment"] {
 
 input[name="newStack"] {
   border-radius: 0;
+}
 
+.editButtons {
+  padding: 0 .375rem;
 }
 
 /**************************NEW POST CARD********************************/
