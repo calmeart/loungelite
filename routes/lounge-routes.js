@@ -8,7 +8,7 @@ const {formatDate} = require('../format-date.js');
 router.route("/")
   .get((req, res) => {
     if (req.user) {
-      Post.find({status: "Public"}).sort({date: "desc"}).exec(function(err, foundPosts) {
+      Post.find({status: "Public"}).sort({dateCreated: "desc"}).exec(function(err, foundPosts) {
         if (err) return res.send(err);
         const timeAgoArray = [];
         foundPosts.forEach(item => {
