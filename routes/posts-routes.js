@@ -22,7 +22,7 @@ router.route("/update")
     const temp = {
       title: req.body.postTitle,
       body: req.body.postBody,
-      date: new Date(),
+      dateUpdated: new Date(),
       status: req.body.postVisibility,
       stack: req.body.postStack,
     };

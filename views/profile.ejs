@@ -30,11 +30,13 @@
         <h5><%= item.title %></h5>
         <div class="d-flex">
           <p><%= timeAgoArray[idx] %> | </p>
-          <form action="/posts/edit" method="post">
-            <input type="hidden" name="postId" value="<%= item._id %>">
-            <button class="btn editButtons mx-1" type="submit" name="editPost"><i class="fas fa-edit"></i></button>
-            <button class="btn editButtons" type="submit" name="deletePost"><i class="fas fa-trash-alt"></i></button>
-          </form>
+          <% if (clientData._id.toString() == userProfile._id.toString()) { %>
+            <form action="/posts/edit" method="post">
+              <input type="hidden" name="postId" value="<%= item._id %>">
+              <button class="btn editButtons mx-1" type="submit" name="editPost"><i class="fas fa-edit"></i></button>
+              <button class="btn editButtons" type="submit" name="deletePost"><i class="fas fa-trash-alt"></i></button>
+            </form>
+          <% } %>
         </div>
 
       </div>

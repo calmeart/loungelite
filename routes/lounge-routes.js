@@ -12,7 +12,7 @@ router.route("/")
         if (err) return res.send(err);
         const timeAgoArray = [];
         foundPosts.forEach(item => {
-          timeAgoArray.push(formatDate(item.date));
+          timeAgoArray.push(formatDate(item.dateCreated));
         })
         res.render('lounge', {
           clientData: req.user,
@@ -29,7 +29,7 @@ router.route("/")
     const temp = new Post({
       title: req.body.postTitle,
       body: req.body.postBody,
-      date: new Date(),
+      dateCreated: new Date(),
       userIdNumber: req.user._id,
       userNickName: req.user.username,
       status: req.body.postVisibility,

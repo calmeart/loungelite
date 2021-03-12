@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
   title: String,
   body: String,
-  date: Date,
+  dateCreated: Date,
+  dateUpdated: Date,
   userIdNumber: String,
   userNickName: String,
   status: String,

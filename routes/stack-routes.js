@@ -22,13 +22,13 @@ router.route("/:stackname")
       const foundUser = await User.findById(req.params.userId);
       let foundPosts;
       if (req.user._id == req.params.userId) {
-        foundPosts = await Post.find({userIdNumber: req.params.userId, stack: req.params.stackname}).sort({date: "desc"});
+        foundPosts = await Post.find({userIdNumber: req.params.userId, stack: req.params.stackname}).sort({dateCreated: "desc"});
       } else {
-        foundPosts = await Post.find({userIdNumber: req.params.userId, stack: req.params.stackname, status: "Public"}).sort({date: "desc"});
+        foundPosts = await Post.find({userIdNumber: req.params.userId, stack: req.params.stackname, status: "Public"}).sort({dateCreated: "desc"});
       }
       const foundStacks = await Stack.find({userId: req.params.userId});
       foundPosts.forEach(item => {
-        timeAgoArray.push(formatDate(item.date));
+        timeAgoArray.push(formatDate(item.dateCreated));
       });
       res.render('profile', {
         userProfile: foundUser,
